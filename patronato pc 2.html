@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patronato Zacualpan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+    header {
+      background-color: #002147;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+    }
+    .frase {
+      font-size: 1.5rem;
+      animation: fade 2s infinite alternate;
+    }
+    @keyframes fade {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+    .botones {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      background-color: #003366;
+    }
+    .botones button {
+      background-color: #f4c430;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .seccion {
+      display: none;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .seccion h2 {
+      color: #002147;
+    }
+    .activo {
+      display: block;
+    }
+    .mensaje-flotante {
+      animation: floatText 8s linear infinite;
+    }
+    @keyframes floatText {
+      0%, 100% { color: white; }
+      50% { color: yellow; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Patronato Zacualpan Pro-equipamiento de Protección Civil</h1>
+    <div class="frase" id="fraseMotivadora"></div>
+    <div id="mensajeFlotante" class="mensaje-flotante"></div>
+  </header>
+
+  <div class="botones">
+    <button onclick="mostrarSeccion('quienes')">¿QUIÉNES SOMOS?</button>
+    <button onclick="mostrarSeccion('mesa')">MESA DIRECTIVA</button>
+    <button onclick="mostrarSeccion('donador')">HAZTE DONADOR DE UN PESO POR DÍA</button>
+  </div>
+
+  <section id="quienes" class="seccion">
+    <h2>¿Quiénes somos?</h2>
+    <p>Somos un grupo de voluntarios que decidimos unirnos a la causa de Protección Civil Zacualpan, porque estamos mirando la necesidad de este gran equipo de voluntarios que ya tienen más de 20 años careciendo de todo y hemos visto cómo se pierden vidas en accidentes en nuestro entorno, por falta de equipo de rescate en accidentes automovilísticos, especialmente en herramientas de desprensado de personas atrapadas en los fierros comprimidos del choque o accidente.</p>
+
+    <h2>Misión</h2>
+    <p>Unirnos en este patronato con el fin de buscar entre todos la idea o forma de recaudar fondos para lograrlo y además estar unidos y empezar con la muestra de una cuota autoasignada por los miembros del patronato, desde la cuota mínima de un peso por día en promedio de cooperación mensual.</p>
+
+    <h2>Visión</h2>
+    <p>Miramos un Zacualpan unido y potencializado ante la adversidad y la tragedia y que juntos hagamos un pueblo más sólido ante tales circunstancias.</p>
+
+    <h2>Valores</h2>
+    <ul>
+      <li>Ética profesional</li>
+      <li>Empatía</li>
+      <li>Diversidad</li>
+      <li>Honestidad</li>
+      <li>Responsabilidad</li>
+    </ul>
+  </section>
+
+  <section id="mesa" class="seccion">
+    <h2>Acceso Mesa Directiva</h2>
+    <form id="loginForm">
+      <label for="username">Usuario:</label>
+      <input type="text" id="username" required>
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" required>
+      <button type="submit">Ingresar</button>
+      <p id="loginError" style="color:red;"></p>
+    </form>
+    <div id="formularioTesorera" style="display:none;">
+      <h3>Formulario de Ingreso de Donatarios y Egresos</h3>
+      <form id="donadorForm">
+        <label for="nombreDonador">Nombre Completo:</label>
+        <input type="text" id="nombreDonador" required>
+        
+        <label for="telefonoDonador">Teléfono:</label>
+        <input type="text" id="telefonoDonador" required>
+        
+        <label for="poblacionDonador">Población:</label>
+        <input type="text" id="poblacionDonador" required>
+        
+        <label for="cantidadDonacion">Cantidad a Donar:</label>
+        <input type="number" id="cantidadDonacion" required>
+        
+        <button type="submit">Registrar Donador</button>
+      </form>
+      <h3>Ingreso de Egresos</h3>
+      <form id="egresoForm">
+        <label for="montoEgreso">Monto de Egreso:</label>
+        <input type="number" id="montoEgreso" required>
+        
+        <label for="comprobanteEgreso">Comprobante (imagen o PDF):</label>
+        <input type="file" id="comprobanteEgreso" accept="image/*,application/pdf">
+        
+        <button type="submit">Registrar Egreso</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="donador" class="seccion">
+    <h2>Hazte Donador</h2>
+    <p>Formulario de registro en construcción.</p>
+  </section>
+
+  <script>
+    const frases = [
+      "Tu apoyo equipa a nuestros héroes voluntarios",
+      "Un pueblo unido es un pueblo fuerte",
+      "Cada peso cuenta para salvar vidas"
+    ];
+    let fraseIndex = 0;
+    setInterval(() => {
+      document.getElementById('fraseMotivadora').textContent = frases[fraseIndex];
+      fraseIndex = (fraseIndex + 1) % frases.length;
+    }, 2000);
+
+    const mensajeFlotante = "Nuestra jurisdicción de voluntarios abarca desde Playa Platanitos hasta Las Varas Nayarit... GRACIAS!!!";
+    let mensajeIndex = 0;
+    const mensajeElement = document.getElementById('mensajeFlotante');
+    setInterval(() => {
+      mensajeElement.textContent = mensajeFlotante;
+    }, 8000);
+
+    function mostrarSeccion(id) {
+      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activo'));
+      document.getElementById(id).classList.add('activo');
+    }
+
+    const roles = {
+      "Presidente": "presidente123",
+      "Tesorera": "tesorera123",
+      "Secretario": "secretario123",
+      "Vocal1": "vocal1123",
+      "Vocal2": "vocal2123"
+    };
+
+    function validarLogin() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      if (roles[username] === password) {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('formularioTesorera').style.display = 'block';
+      } else {
+        document.getElementById('loginError').textContent = 'Usuario o contraseña incorrectos';
+      }
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      validarLogin();
+    });
+
+    document.getElementById('donadorForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const donador = {
+        nombre: document.getElementById('nombreDonador').value,
+        telefono: document.getElementById('telefonoDonador').value,
+        poblacion: document.getElementById('poblacionDonador').value,
+        cantidad: document.getElementById('cantidadDonacion').value
+      };
+
+      fetch('https://script.google.com/macros/s/AKfycbzEcgwv7GuZLIcOHvRIsxqS4qsg8DxlojDuQY_tEVZA0F9dycCr4XShN7oDrIm9WyOG/exec', {
+        method: 'POST',
+        body: JSON.stringify(donador)
+      }).then(response => {
+        alert("Donador registrado correctamente");
+      }).catch(error => {
+        alert("Error al registrar donador");
+      });
+    });
+
+    document.getElementById('egresoForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const egreso = {
+        monto: document.getElementById('montoEgreso').value,
+        comprobante: document.getElementById('comprobanteEgreso').files[0]
+      };
+      // Lógica para subir el comprobante (imagen o PDF) y registrar egreso
+      alert("Egreso registrado correctamente");
+    });
+  </script>
+</body>
+</html>
